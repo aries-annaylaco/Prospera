@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prospera CRM | Aries V. Kalalo</title>
+<meta name="description" content="Prospera, a purpose-built CRM with automated lead-farming, designed and built by Aries V. Kalalo." />
+<style>
+  :root {
+    --bg: #0f1916;
+    --surface: #ffffff;
+    --ink: #111;
+    --ink-soft: #444;
+    --muted: #6b7271;
+    --accent: #06D6A0;
+    --accent-deep: #0a6b52;
+    --accent-soft: #f4fbf8;
+    --border: #e3e7e6;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #f6f8f7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background:
+      radial-gradient(60% 80% at 80% 20%, rgba(6,214,160,0.18) 0%, transparent 60%),
+      radial-gradient(50% 70% at 10% 90%, rgba(6,214,160,0.10) 0%, transparent 60%),
+      var(--bg);
+    color: #f1f5f3;
+    padding: 64px 24px 56px;
+  }
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 14px;
+    padding: 4px 10px;
+    border: 1px solid rgba(6,214,160,0.4);
+    border-radius: 999px;
+  }
+  h1.hero-title {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    margin: 0 0 16px;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.55;
+    color: #c7d4d0;
+    max-width: 640px;
+    margin: 0 0 28px;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #052a20;
+    box-shadow: 0 4px 16px rgba(6,214,160,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(6,214,160,0.45); }
+  .btn-ghost {
+    background: transparent;
+    color: #f1f5f3;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+  .btn .arrow { font-size: 16px; }
+
+  /* ---------- AUTHOR STRIP ---------- */
+  .author-strip {
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+  }
+  .author-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .author-row .who {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .author-row .dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
+  .author-row a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  /* ---------- MAIN CARDS ---------- */
+  .main {
+    padding: 56px 24px 24px;
+  }
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 26px 22px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(6,214,160,0.12);
+  }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-kind {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    border: 1px solid #c8ebdd;
+    padding: 3px 9px;
+    border-radius: 999px;
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .card h3 {
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    margin: 0 0 18px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .card .open {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-deep);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .card .open .arrow {
+    transition: transform 0.14s ease;
+  }
+  .card:hover .open .arrow { transform: translateX(3px); }
+
+  /* ---------- DETAILS ---------- */
+  .details {
+    padding: 40px 24px 72px;
+  }
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+  }
+  @media (max-width: 760px) {
+    .details-grid { grid-template-columns: 1fr; gap: 22px; }
+  }
+  .details h2 {
+    font-size: 22px;
+    margin: 0 0 12px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .details p {
+    margin: 0 0 10px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .stack {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack li {
+    font-size: 12px;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    border: 1px solid #c8ebdd;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    background: #ffffff;
+    padding: 22px 24px;
+  }
+  .foot-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .foot-row a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Project · 2026</span>
+      <h1 class="hero-title">Prospera <span class="accent">CRM</span></h1>
+      <p class="hero-sub">
+        A purpose-built customer-relationship platform with automated lead-farming, designed for HubPay's money-transfer sales operations. Daily automated capture, CSV bulk import, single-entry quick-add, and a unified pipeline view, in one focused tool.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="demo.html">Open Live Demo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="case-study.html">Read the Case Study</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="author-strip">
+    <div class="container author-row">
+      <span class="who">Aries V. Kalalo</span>
+      <span class="dot"></span>
+      <span>Designer &amp; Developer</span>
+      <span class="dot"></span>
+      <a href="mailto:kalalo.aries@gmail.com">kalalo.aries@gmail.com</a>
+      <span class="dot"></span>
+      <a href="https://www.linkedin.com/in/aries-kalalo-063262117/">LinkedIn</a>
+    </div>
+  </div>
+
+  <section class="main">
+    <div class="container">
+      <p class="section-label">Explore</p>
+      <div class="cards">
+
+        <a class="card" href="demo.html">
+          <span class="card-kind">Live Demo</span>
+          <h3>Try Prospera in your browser</h3>
+          <p>The full working CRM, no signup required. Browse leads, walk through the pipeline, and test the import flows on real seeded data.</p>
+          <span class="open">Open demo <span class="arrow">→</span></span>
+        </a>
+
+        <a class="card" href="case-study.html">
+          <span class="card-kind">Case Study</span>
+          <h3>How and why I built it</h3>
+          <p>One-page write-up covering the HubPay problem, the solution architecture, key screens, the tools used, and what a virtual assistant does with the product.</p>
+          <span class="open">Read case study <span class="arrow">→</span></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="container">
+      <div class="details-grid">
+        <div>
+          <h2>About the project</h2>
+          <p>HubPay's sales team, operating in the high-volume, regulated money-transfer space, needed a focused way to capture, qualify, and track prospects without paying for an enterprise CRM. Off-the-shelf tools like HubSpot and Salesforce are overbuilt for the workflow, while spreadsheets lose context the moment more than one virtual assistant touches the data.</p>
+          <p>Prospera was built as a lightweight, purpose-fit alternative: daily automated lead-farming on a Supabase backend, two manual entry paths for full operator control, and a unified pipeline dashboard for at-a-glance health.</p>
+        </div>
+        <div>
+          <h2>Built with</h2>
+          <ul class="stack">
+            <li>JavaScript</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>Supabase</li>
+            <li>Git</li>
+            <li>GitHub Pages</li>
+            <li>Claude Code</li>
+          </ul>
+          <h2 style="margin-top: 22px;">Role &amp; status</h2>
+          <p>Sole designer and developer. Live demo deployed publicly. Built and iterated in 2026.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-row">
+      <span>© 2026 Aries V. Kalalo · Prospera CRM</span>
+      <span><a href="demo.html">Demo</a> · <a href="case-study.html">Case Study</a> · <a href="mailto:kalalo.aries@gmail.com">Email</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
