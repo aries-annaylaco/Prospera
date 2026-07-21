@@ -13,11 +13,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // RSS feeds covering UAE / MENA payments & fintech
 const FEEDS = [
   { url: 'https://wamda.com/feed',                           source: 'Wamda' },
-  { url: 'https://www.arabianbusiness.com/rss',              source: 'Arabian Business' },
-  { url: 'https://gulfnews.com/rss/business',                source: 'Gulf News' },
-  { url: 'https://www.thenationalnews.com/rss/business.rss', source: 'The National' },
   { url: 'https://menabytes.com/feed/',                      source: 'MENAbytes' },
-  // Khaleej Times business RSS (…/business/rss) was retired and returns 404 — removed to avoid noisy warnings.
+  // The following feeds were retired / now block scraping and were removed to keep logs clean:
+  //   Arabian Business (…/rss → 405), Gulf News (…/rss/business → 404),
+  //   The National (…/rss/business.rss → 404), Khaleej Times (…/business/rss → 404).
 ];
 
 // Extract company name from headline patterns

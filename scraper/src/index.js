@@ -3,8 +3,11 @@ import { db } from './supabase.js';
 import { logger } from './utils/logger.js';
 import { normalize, isHubpayRelevant } from './utils/normalize.js';
 import { getExistingCompanies, isDuplicate } from './utils/dedup.js';
-import { runDIFC }       from './scrapers/difc.js';
-import { runADGM }       from './scrapers/adgm.js';
+// DIFC and ADGM sources are currently offline (DNS/403/404/429 on every endpoint),
+// so their scrapers are disabled to keep logs clean and the job fast. Re-enable by
+// restoring the imports + scraperJobs entries once those sites are reachable again.
+// import { runDIFC }       from './scrapers/difc.js';
+// import { runADGM }       from './scrapers/adgm.js';
 import { runNews }       from './scrapers/news.js';
 import { runCrunchbase } from './scrapers/crunchbase.js';
 
@@ -25,8 +28,8 @@ async function main() {
 
   // 2. Run all scrapers (2 at a time max to stay within memory limits)
   const scraperJobs = [
-    () => runDIFC(),
-    () => runADGM(),
+    // () => runDIFC(),   // disabled — source offline (see import note above)
+    // () => runADGM(),   // disabled — source offline (see import note above)
     () => runNews(),
     () => runCrunchbase(),
   ];
