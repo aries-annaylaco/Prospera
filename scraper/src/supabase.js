@@ -1,21 +1,21 @@
 import { createClient } from '@supabase/supabase-js';
-import { logger } from './utils/logger.js';
 
-// Trim whitespace and any trailing slash from the URL. A trailing slash makes
-// supabase-js build "https://xxx.supabase.co//rest/v1/..." (double slash), which
-// the API gateway rejects with "Invalid path specified in request URL".
-const supabaseUrl = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
-const supabaseKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
-
-// TEMP DIAGNOSTIC (no secret exposed): report the URL's structure only.
-try {
-  const u = new URL(supabaseUrl);
-  logger.info(
-    `URL diag → protocol:${u.protocol} hostEndsWith.supabase.co:${u.hostname.endsWith('.supabase.co')} ` +
-    `hostLen:${u.hostname.length} pathname:"${u.pathname}" keyLen:${supabaseKey.length}`
-  );
-} catch (e) {
-  logger.error(`URL diag → not a parseable URL (len:${supabaseUrl.length}): ${e.message}`);
+// supabase-js expects the *base* project URL (https://<ref>.supabase.co) and
+// appends its own "/rest/v1/..." path. If SUPABASE_URL includes a path such as
+// "/rest/v1" (as shown on the Data API settings page) or a trailing slash, the
+// client builds ".../rest/v1/rest/v1/..." and the gateway rejects it with
+// "Invalid path specified in request URL". Reduce the value to its origin so it
+// works no matter which form was pasted in.
+function normalizeSupabaseUrl(raw) {
+  const trimmed = (raw || '').trim();
+  try {
+    return new URL(trimmed).origin;
+  } catch {
+    return trimmed.replace(/\/+$/, ''); // fall back to a best-effort cleanup
+  }
 }
+
+const supabaseUrl = normalizeSupabaseUrl(process.env.SUPABASE_URL);
+const supabaseKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
 
 export const db = createClient(supabaseUrl, supabaseKey);
