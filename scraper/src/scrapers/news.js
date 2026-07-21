@@ -17,7 +17,7 @@ const FEEDS = [
   { url: 'https://gulfnews.com/rss/business',                source: 'Gulf News' },
   { url: 'https://www.thenationalnews.com/rss/business.rss', source: 'The National' },
   { url: 'https://menabytes.com/feed/',                      source: 'MENAbytes' },
-  { url: 'https://www.khaleejtimes.com/business/rss',        source: 'Khaleej Times' },
+  // Khaleej Times business RSS (…/business/rss) was retired and returns 404 — removed to avoid noisy warnings.
 ];
 
 // Extract company name from headline patterns
